@@ -1,0 +1,290 @@
+/* =====================================================
+   Unawatuna Cove Villa - main stylesheet
+   Works on top of Bootstrap 5.3 (loaded from CDN).
+   Mobile first: base rules are for phones, media queries
+   below add tablet / desktop layout.
+   ===================================================== */
+
+:root {
+    --ocean:        #0F2C4C;   /* Deep Ocean Navy */
+    --ocean-dark:   #081B30;   /* Deeper Midnight Navy */
+    --ocean-light:  #EBF1F6;   /* Soft Coastal Mist Tint */
+    --sand:         #F7F9FB;   /* Soft Sea Mist Surface */
+    --sun:          #E06D53;   /* Warm Sunset Coral */
+    --sun-dark:     #C9583F;   /* Hover Sunset Coral */
+    --text:         #1E293B;   /* Dark Slate */
+    --radius:       0.75rem;
+}
+
+body {
+    color: var(--text);
+    background-color: var(--sand);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------- Colour helpers ---------- */
+.bg-ocean       { background-color: var(--ocean) !important; }
+.bg-ocean-dark  { background-color: var(--ocean-dark) !important; }
+.text-ocean     { color: var(--ocean) !important; }
+
+.btn-ocean {
+    background-color: var(--ocean);
+    border-color: var(--ocean);
+    color: #fff;
+}
+.btn-ocean:hover,
+.btn-ocean:focus {
+    background-color: var(--ocean-dark);
+    border-color: var(--ocean-dark);
+    color: #fff;
+}
+.btn-ocean:disabled { opacity: .65; }
+
+/* Sunset Coral CTA override for primary action buttons */
+.btn-warning {
+    background-color: var(--sun) !important;
+    border-color: var(--sun) !important;
+    color: #fff !important;
+    font-weight: 600;
+}
+.btn-warning:hover,
+.btn-warning:focus {
+    background-color: var(--sun-dark) !important;
+    border-color: var(--sun-dark) !important;
+    color: #fff !important;
+}
+
+.progress-bar.bg-ocean { background-color: var(--ocean) !important; }
+
+a { color: var(--ocean); }
+a:hover { color: var(--sun); }
+
+.footer-link {
+    color: #CBD5E1;
+    text-decoration: none;
+    transition: color .15s ease;
+}
+.footer-link:hover { color: var(--sun); text-decoration: underline; }
+
+.letter-wide { letter-spacing: .12em; }
+
+.section-title {
+    font-weight: 700;
+    color: var(--ocean);
+    margin-bottom: 1rem;
+}
+.section-title::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 4px;
+    margin-top: .5rem;
+    border-radius: 2px;
+    background: var(--sun);
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+    background-color: var(--ocean) !important;
+    box-shadow: 0 2px 12px rgba(15, 44, 76, .15);
+}
+.navbar .nav-link.active {
+    font-weight: 600;
+    border-bottom: 2px solid var(--sun);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+    --hero-image: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 70vh;
+    padding: 4rem 0 7rem;
+    background:
+        linear-gradient(180deg, rgba(15, 44, 76, .62), rgba(8, 27, 48, .82)),
+        var(--hero-image),
+        linear-gradient(135deg, #0F2C4C 0%, #1B4965 60%, #E06D53 140%);
+    background-size: cover;
+    background-position: center;
+}
+.hero-content { max-width: 760px; }
+.hero h1 { text-shadow: 0 2px 14px rgba(0, 0, 0, .4); }
+
+/* Availability search card overlapping the hero */
+.search-wrap { margin-top: -4.5rem; position: relative; z-index: 5; }
+.search-card {
+    background: #ffffff;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 .75rem 2rem rgba(15, 44, 76, .10);
+}
+
+/* ---------- Page banner (inner pages) ---------- */
+.page-banner {
+    background: linear-gradient(135deg, var(--ocean-dark), var(--ocean));
+    color: #fff;
+    padding: 2.25rem 0;
+}
+
+/* ---------- Feature boxes ---------- */
+.feature-box {
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: var(--radius);
+    padding: 1.35rem .85rem;
+    box-shadow: 0 .25rem .75rem rgba(15, 44, 76, .04);
+    transition: transform .2s ease, border-color .2s ease;
+}
+.feature-box:hover {
+    transform: translateY(-3px);
+    border-color: var(--sun);
+}
+.feature-icon { font-size: 2rem; color: var(--sun); }
+
+/* ---------- Room cards ---------- */
+.room-card {
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.room-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 .75rem 1.5rem rgba(15, 44, 76, .14) !important;
+}
+.room-img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    background: var(--ocean-light);
+}
+.detail-img {
+    max-height: 460px;
+    object-fit: cover;
+}
+.facility-badge {
+    background: var(--ocean-light);
+    color: var(--ocean);
+    font-weight: 500;
+}
+.facility-item {
+    background: #ffffff;
+    border: 1px solid #CBD5E1;
+    border-radius: .5rem;
+    padding: .5rem .75rem;
+    font-size: .9rem;
+}
+
+/* Sticky booking panel sits below the navbar on large screens */
+.booking-panel { border-radius: var(--radius); }
+@media (min-width: 992px) {
+    .booking-panel.sticky-lg-top { top: 5.5rem; }
+}
+
+.summary-list dt { font-weight: 500; color: #64748B; }
+.summary-list dd { margin-bottom: .5rem; font-weight: 600; }
+
+/* ---------- Form feedback ---------- */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--sun);
+    box-shadow: 0 0 0 .2rem rgba(224, 109, 83, .22);
+}
+.form-control.is-valid-field { border-color: #198754; }
+#availabilityMsg .alert { margin-bottom: 0; }
+
+/* ---------- Tables / thumbnails ---------- */
+.booking-thumb,
+.admin-thumb {
+    width: 64px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: .375rem;
+    background: var(--ocean-light);
+}
+.request-row td { background: #F8FAFC; }
+
+/* On phones, each table row becomes a stacked card */
+@media (max-width: 767.98px) {
+    table.responsive-stack thead { display: none; }
+
+    table.responsive-stack,
+    table.responsive-stack tbody,
+    table.responsive-stack tr,
+    table.responsive-stack td {
+        display: block;
+        width: 100%;
+    }
+    table.responsive-stack tr {
+        border-bottom: 1px solid #CBD5E1;
+        padding: .5rem 0;
+    }
+    table.responsive-stack td {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+        text-align: right;
+        border: 0;
+        padding: .35rem 1rem;
+    }
+    table.responsive-stack td::before {
+        content: attr(data-label);
+        flex: 0 0 38%;
+        text-align: left;
+        font-weight: 600;
+        color: #64748B;
+    }
+    table.responsive-stack td.text-end { text-align: right !important; }
+    table.responsive-stack tr.request-row td {
+        display: block;
+        text-align: left;
+        padding: 0 1rem .5rem;
+    }
+    table.responsive-stack tr.request-row td::before { content: none; }
+}
+
+/* ---------- Admin statistic cards ---------- */
+.stat-card {
+    position: relative;
+    display: block;
+    height: 100%;
+    padding: 1rem 1rem 1rem 1.1rem;
+    border-radius: var(--radius);
+    background: #ffffff;
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid #E2E8F0;
+    border-left-width: 5px;
+    box-shadow: 0 .125rem .5rem rgba(15, 44, 76, .06);
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+a.stat-card:hover {
+    color: var(--text);
+    transform: translateY(-2px);
+    box-shadow: 0 .5rem 1rem rgba(15, 44, 76, .12);
+}
+.stat-icon   { position: absolute; top: .75rem; right: .9rem; font-size: 1.5rem; opacity: .35; }
+.stat-number { font-size: 2rem; font-weight: 700; line-height: 1.1; }
+.stat-number-sm { font-size: 1.5rem; }
+.stat-label  { font-size: .82rem; color: #64748B; }
+
+.stat-warning { border-left-color: var(--sun); }
+.stat-success { border-left-color: #198754; }
+.stat-muted   { border-left-color: #64748B; }
+.stat-info    { border-left-color: var(--ocean); }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 575.98px) {
+    .hero { min-height: 60vh; padding-bottom: 6rem; }
+    .hero h1 { font-size: 2rem; }
+    .search-card { padding: 1rem; }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+}
